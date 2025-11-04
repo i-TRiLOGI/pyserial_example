@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import serial, datetime
+from serial.tools import list_ports
 
 PARITY_MAP = {
     'None': serial.PARITY_NONE,
@@ -8,6 +9,8 @@ PARITY_MAP = {
     'Even': serial.PARITY_EVEN,
 }
 serialComm = serial.Serial()
+ports = list_ports.comports()
+portNames = [port.device for port in ports]
 
 def setSerialComm():
     global serialComm
@@ -85,7 +88,7 @@ frame1.pack(fill='x', padx=5, pady=5)
 ttk.Label(frame1, text="Port Name:").pack(side='left', padx=(0, 5))
 portCombobox = ttk.Combobox(
     frame1,
-    values=['COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6']
+    values=portNames
 )
 portCombobox.pack(side='left', fill='x', expand=True, padx=(0, 10))
 portCombobox.current(0)
