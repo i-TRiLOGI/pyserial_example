@@ -67,7 +67,7 @@ def sendSerialCommand(event):
         printOutput("Port is not open")
         return
     command = commandEntry.get()
-    bytes = (command + '\r\n').encode()
+    bytes = (command + '\r').encode()
     try: 
         printOutput("Sending command %s" % command)
         serialComm.write(bytes)
